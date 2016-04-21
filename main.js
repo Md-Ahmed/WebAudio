@@ -3,4 +3,4 @@ var oscillator = audioContext.createOscillator();
 oscillator.type = 'sine';
 oscillator.frequencyValue = 3500;
 oscillator.start();
-oscillator.connect(AudioContext.destination);
+oscillator.connect(audioContext.destination);
