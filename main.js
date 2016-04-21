@@ -4,13 +4,18 @@ isPlaying = false;
 function play(){
     oscillator = audioContext.createOscillator();
     oscillator.type = 'sine';
-    oscillator.frequencyValue = 3500;
     oscillator.connect(audioContext.destination);
     oscillator.start();
 }
 function stop() {
     oscillator.disconnect();
 }
+
+function updateFrequency(element) {
+    oscillator.frequency.value = element.value;
+    console.log(element.value);
+}
+
 function togglePlay() {
     if(isPlaying){
         stop();
