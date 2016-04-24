@@ -4,7 +4,7 @@ var context = canvas.getContext("2d");
 console.log(context);
 context.fillStyle = "green";
 console.log(context.fillStyle);
-context.fillRect(10, 10, 100, 100);
+context.fillRect(0, 0, canvas.width, canvas.height);
 var audioContext = new (window.AudioContext || window.webkitAudioContext)();
 var oscillator;
 isPlaying = false;
