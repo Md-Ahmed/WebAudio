@@ -1,16 +1,17 @@
+var x = 0;
+var y = 0.00;
+
 var canvas = document.getElementById('canvas');
-console.log(canvas);
 var context = canvas.getContext("2d");
-console.log(context);
-context.fillStyle = "green";
-console.log(context.fillStyle);
-context.fillRect(0, 0, canvas.width, canvas.height);
+render();
+
 var audioContext = new (window.AudioContext || window.webkitAudioContext)();
 var oscillator;
 isPlaying = false;
 function play(){
     oscillator = audioContext.createOscillator();
     oscillator.type = 'sine';
+    oscillator.frequency.value = document.getElementById('frequency').value;
     oscillator.connect(audioContext.destination);
     oscillator.start();
 }
@@ -20,7 +21,6 @@ function stop() {
 
 function updateFrequency(element) {
     oscillator.frequency.value = element.value;
-    console.log(element.value);
 }
 
 function togglePlay() {
@@ -32,4 +32,29 @@ function togglePlay() {
         play();
         isPlaying = true;
     }
+}
+/*function render(){
+    context.fillStyle = "green";
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    for(var i = 0; i < canvas.width; i++){
+        context.fillRect(x, Math.sin((180/Math.PI)*y)*20 + (canvas.height/2), 2, 2);
+        x++;
+        y += .002;
+    }
+    x++;
+    requestAnimationFrame(render);
+}*/
+
+function render(){
+    context.fillStyle = "green";
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    for(var i = 0; i < canvas.width; i++){
+        context.fillRect(x, Math.sin((180/Math.PI)*y)*20 + (canvas.height/2), 2, 2);
+        x += 1;
+        y += .002;
+    }
+    if (x > canvas.width){
+        x = 0;
+    }
+    requestAnimationFrame(render);
 }
